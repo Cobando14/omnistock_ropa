@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista previa inventario simple</title>
+    <style>
+:root{
+    --primary-color:#3b82f6;
+    --danger-color:#ef4444;
+    --gray-200:#e2e8f0;
+    --gray-500:#6b7280;
+}
+body{font-family:Arial,Helvetica,sans-serif;background:#fafafa;color:#111;margin:0;padding:0;}
+.container{max-width:1400px;margin:0 auto;padding:2rem;}
+.page-header{margin-bottom:1.5rem;}
+.page-header h2{color:var(--primary-color);margin:0;}
+.page-header p{color:#6b7280;margin:0.5rem 0;}
+
+.stats-cards{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.card{flex:1;min-width:150px;padding:1rem 1.5rem;background:white;border-left:4px solid var(--primary-color);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
+.card.red{border-left-color:var(--danger-color);}
+.card.blue{border-left-color:var(--primary-color);}
+.card div{line-height:1.4;}
+
+.inventario-filters{background:white;padding:1.5rem;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.08);border:1px solid var(--gray-200);margin-bottom:2rem;}
+.filters-header{font-size:1.25rem;font-weight:700;color:var(--primary-color);margin-bottom:1rem;}
+
+.filters-grid{display:grid;grid-template-columns:minmax(200px,2fr) minmax(120px,1fr) minmax(120px,1fr) auto;gap:1rem;align-items:end;}
+@media(max-width:768px){.filters-grid{grid-template-columns:1fr;gap:1rem;}}
+
+.filter-group{display:flex;flex-direction:column;}
+.filter-group label{font-weight:600;color:#374151;margin-bottom:0.5rem;font-size:0.9rem;}
+.filter-group input,.filter-group select{width:100%;padding:0.75rem 1rem;border:1px solid var(--gray-200);border-radius:6px;font-size:0.9rem;transition:all .2s;}
+.filter-group input:focus,.filter-group select:focus{outline:none;border-color:var(--primary-color);box-shadow:0 0 0 2px rgba(59,130,246,0.2);}
+.filter-group input[name="busqueda"]{max-width:250px;}
+
+.filter-actions{display:flex;gap:0.75rem;}
+.btn-primary{padding:0.75rem 1.5rem;background:var(--primary-color);color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;transition:all .2s;}
+.btn-primary:hover{background:#2563eb;transform:translateY(-1px);}
+.btn-secondary{padding:0.75rem 1.5rem;background:white;color:var(--gray-500);border:1px solid var(--gray-200);border-radius:6px;cursor:pointer;transition:all .2s;}
+.btn-secondary:hover{background:#f9fafb;}
+
+@media print{.inventario-filters,.filter-actions{display:none;}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h2>Gestionar Inventario (200 productos)</h2>
+            <p>Control de stock, ventas y devoluciones</p>
+            <p>📊 Mostrando 186 items de inventario</p>
+        </div>
+
+        <div class="stats-cards">
+            <div class="card blue"><div>Total de Items</div><div style="font-size:1.5rem;font-weight:700;">186</div></div>
+            <div class="card blue"><div>Stock Total</div><div style="font-size:1.5rem;font-weight:700;">8,119</div></div>
+            <div class="card red"><div>Items Bajo Stock</div><div style="font-size:1.5rem;font-weight:700;">2</div></div>
+            <div class="card red"><div>Items Agotados</div><div style="font-size:1.5rem;font-weight:700;">0</div></div>
+        </div>
+
+        <div class="inventario-filters">
+            <div class="filters-header">🔍 Filtros de Búsqueda</div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Buscar Producto</label>
+                    <input type="text" placeholder="Nombre o descripción" />
+                </div>
+                <div class="filter-group">
+                    <label>Filtrar por Producto</label>
+                    <select><option>Todos</option></select>
+                </div>
+                <div class="filter-group">
+                    <label>Ordenar Por</label>
+                    <select><option>Producto</option></select>
+                </div>
+                <div class="filter-actions">
+                    <button class="btn-primary">🔍 Buscar</button>
+                    <button class="btn-secondary">🗑️ Limpiar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
