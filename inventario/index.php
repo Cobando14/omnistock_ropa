@@ -78,74 +78,17 @@ $result = $conn->query($sql);
 </div>
 
 <?php if($result->num_rows > 0): ?>
-<form method="get" action="">
-    <input type="text" name="busqueda" placeholder="Buscar producto" value="<?php echo htmlspecialchars($busqueda); ?>" style="padding:0.5rem;" />
-    <select name="producto" style="padding:0.5rem;">
-        <option value="">Todos los productos</option>
-        <?php
-            $productos_filter->data_seek(0);
-            while($row = $productos_filter->fetch_assoc()){
-                $sel = $row['id_producto']==$filtro_producto ? ' selected' : '';
-                echo "<option value=\"{$row['id_producto']}\"$sel>".htmlspecialchars($row['nom_producto'])."</option>";
-            }
-        ?>
-    </select>
-    <select name="orden" style="padding:0.5rem;">
-        <option value="producto"<?php if($orden=='producto') echo ' selected';?>>Producto</option>
-        <option value="stock_bajo"<?php if($orden=='stock_bajo') echo ' selected';?>>Stock bajo</option>
-        <option value="stock_alto"<?php if($orden=='stock_alto') echo ' selected';?>>Stock alto</option>
-        <option value="vendidas"<?php if($orden=='vendidas') echo ' selected';?>>Más vendidas</option>
-        <option value="precio"<?php if($orden=='precio') echo ' selected';?>>Precio</option>
-    </select>
-    <button type="submit" class="btn">Buscar</button>
-    <a href="index.php" class="btn">Limpiar</a>
-</form>
-
-<table>
-    <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Talla</th>
-            <th>Color</th>
-            <th>Stock</th>
-            <th>Vendidas</th>
-            <th>Original</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if($result && $result->num_rows>0){
-            while($row=$result->fetch_assoc()){
-        ?>
-        <tr>
-            <td><?php echo htmlspecialchars($row['nom_producto']); ?></td>
-            <td><?php echo htmlspecialchars($row['nombre_talla']); ?></td>
-            <td><?php echo htmlspecialchars($row['nombre_color']); ?></td>
-            <td><?php echo $row['stock']; ?></td>
-            <td><?php echo $row['cantidad_vendida']; ?></td>
-            <td><?php echo $row['stock_original']; ?></td>
-        </tr>
-        <?php
-            }
-        } else {
-            echo '<tr><td colspan="6" style="text-align:center;padding:1rem;">No hay registros</td></tr>';
-        }
-        ?>
-    </tbody>
-</table>
-
-<?php include("../includes/footer.php"); ?>
-        .filter-tag,
-        .stat-card {
-            transition: none;
-        }
-        
-        .btn-primary:hover,
-        .btn-secondary:hover,
-        .filter-group input:focus,
-        .filter-group select:focus {
-            transform: none;
-        }
+<style>
+    .filter-tag,
+    .stat-card {
+        transition: none;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .filter-group input:focus,
+    .filter-group select:focus {
+        transform: none;
     }
     
     @media (max-width: 1024px) {
@@ -416,6 +359,7 @@ $result = $conn->query($sql);
             font-size: 1.125rem;
         }
     }
+</style>
 </style>
 
 <?php

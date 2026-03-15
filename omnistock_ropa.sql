@@ -1,4 +1,4 @@
-
+gsi
 CREATE DATABASE IF NOT EXISTS OmniStock_ropa;
 USE OmniStock_ropa;
 
